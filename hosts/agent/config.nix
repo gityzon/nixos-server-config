@@ -27,7 +27,7 @@
     };
   };
 
-  swapDevices = [{ device = "swapfile"; size = 1075; }];
+  swapDevices = [{ device = "/swapfile"; size = 1075; }];
   # Enable networking
   # networking.networkmanager.enable = true;
   networking.hostName = host;

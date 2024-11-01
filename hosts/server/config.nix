@@ -27,7 +27,7 @@
     };
   };
 
-  swapDevices = [{ device = "swapfile"; size = 1075; }];
+  swapDevices = [{ device = "/swapfile"; size = 1075; }];
   # Enable networking
   # networking.networkmanager.enable = true;
   networking.hostName = host;
@@ -70,6 +70,7 @@
   environment.variables = {
   #   ZANEYOS_VERSION = "2.2";
   #   ZANEYOS = "true";
+      KUBECONFIG = /etc/rancher/k3s/k3s.yaml;
   };
 
    # Services to start
@@ -88,6 +89,7 @@
   services.k3s = {
     enable = true;
     role = "server";
+    package = pkgs.k3s_1_30;
   };
   # another
   # services.k3s = {
