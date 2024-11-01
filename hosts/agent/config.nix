@@ -70,6 +70,7 @@
   environment.variables = {
   #   ZANEYOS_VERSION = "2.2";
   #   ZANEYOS = "true";
+      KUBECONFIG = /etc/rancher/k3s/k3s.yaml;
   };
 
    # Services to start
@@ -91,6 +92,7 @@
     role = "agent"; # Or "agent" for worker only nodes
     token = "<randomized common secret>"; # use "cat /var/lib/rancher/k3s/server/node-token" to check
     serverAddr = "https://<ip of first node>:6443";
+    package = pkgs.k3s_1_30;
   };
   # Optimization settings and garbage collection automation
   nix = {
