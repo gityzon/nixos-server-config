@@ -27,6 +27,7 @@
     };
   };
 
+  swapDevices = [{ device = "swapfile"; size = 1075; }];
   # Enable networking
   # networking.networkmanager.enable = true;
   networking.hostName = host;
@@ -89,12 +90,12 @@
     role = "server";
   };
   # another
-  services.k3s = {
-    enable = true;
-    role = "server"; # Or "agent" for worker only nodes
-    token = "<randomized common secret>";
-    serverAddr = "https://<ip of first node>:6443";
-  };
+  # services.k3s = {
+  #   enable = true;
+  #   role = "server"; # Or "agent" for worker only nodes
+  #   token = "<randomized common secret>";
+  #   serverAddr = "https://<ip of first node>:6443";
+  # };
   # Optimization settings and garbage collection automation
   nix = {
     settings = {

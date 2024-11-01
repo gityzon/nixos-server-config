@@ -16,7 +16,6 @@
         "${host}" = nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit system;
-            inherit inputs;
             inherit host;
           };
           modules = [
