@@ -15,3 +15,6 @@ switch input:
 
 build:
   sudo nix build .#image --impure --show-trace -L -v --extra-experimental-features flakes --extra-experimental-features nix-command
+
+update:
+  sudo nix flake update --extra-experimental-features flakes --extra-experimental-features nix-command

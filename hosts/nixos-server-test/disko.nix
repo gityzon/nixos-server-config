@@ -72,15 +72,12 @@
     };
   };
 
-  # 由于我们没有让 Disko 管理 fileSystems.* 配置，我们需要手动配置
-  # 根分区，是磁盘镜像上的第三个分区。由于我的 VPS 将硬盘识别为 sdb，因此这里用 sdb3。如果你的 VPS 识别结果不同请按需修改
   fileSystems."/" = {
     device = "/dev/vda3";
     fsType = "btrfs";
     options = ["compress-force=zstd" "nosuid" "nodev"];
   };
 
-  # /boot 分区，是磁盘镜像上的第二个分区。由于我的 VPS 将硬盘识别为 sdb，因此这里用 sdb3。如果你的 VPS 识别结果不同请按需修改
   fileSystems."/boot" = {
     device = "/dev/vda2";
     fsType = "vfat";
