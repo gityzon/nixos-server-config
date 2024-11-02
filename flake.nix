@@ -1,15 +1,18 @@
 {
-  description = "atp server nixos k3s";
+  description = "nixos-server-config";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+  disko = {
+    url = "github:nix-community/disko";
+    inputs.nixpkgs.follows = "nixpkgs";
   };
-
+};
   outputs =
-    { nixpkgs, home-manager, ... }@inputs:
+    { self, nixpkgs, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
-      host = "server";
+      host = "timenowaste";
     in
     {
       nixosConfigurations = {
@@ -20,8 +23,12 @@
           };
           modules = [
             ./hosts/${host}/config.nix
+            inputs.disko.nixosModules.disko
           ];
+          };
         };
+        packages.x86_64-linux = {
+          image = self.nixosConfigurations.${host}.config.system.build.diskoImages;
       };
     };
 }

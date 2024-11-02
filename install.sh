@@ -8,7 +8,7 @@ fi
 
 HOSTNAME="$1"
 
-echo "Now Going To Build AntipethOS, 🤞"
+echo "Now Going To Build, 🤞"
 nixos-generate-config --show-hardware-config >hosts/"$HOSTNAME"/hardware.nix
 export NIX_CONFIG="experimental-features = nix-command flakes"
 sudo nixos-rebuild switch --flake .#"$HOSTNAME"

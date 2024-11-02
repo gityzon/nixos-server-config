@@ -68,8 +68,6 @@
   ];
 
   environment.variables = {
-  #   ZANEYOS_VERSION = "2.2";
-  #   ZANEYOS = "true";
       KUBECONFIG = /etc/rancher/k3s/k3s.yaml;
   };
 
