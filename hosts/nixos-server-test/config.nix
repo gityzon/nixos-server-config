@@ -71,6 +71,7 @@
   users = {
     mutableUsers = false;
     users.root = {
+      hashedPassword = "$y$j9T$lBFX/Lh4ssVXJwn.L4Bj80$rb5uRZthWPbL9JIisphZyFwScrcOXizYAwRRDe7.eS7";
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIhtWgRmVXptkc7cVosLt5juqaaj4Ce8I5WAvmp8IyAG"
       ];
@@ -90,7 +91,7 @@
    # Services to start
   services.openssh = {
     enable = true;
-    ports = [ 22 ];
+    ports = [ 222 ];
     settings = {
       PasswordAuthentication = true;
       AllowUsers = null; # Allows all users by default. Can be [ "user1" "user2" ]
@@ -127,14 +128,6 @@
       options = "--delete-older-than 7d";
     };
   };
-
-  # Virtualization / Containers
-  # virtualisation.libvirtd.enable = true;
-  # virtualisation.podman = {
-  #   enable = true;
-  #   dockerCompat = true;
-  #   defaultNetwork.settings.dns_enabled = true;
-  # };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

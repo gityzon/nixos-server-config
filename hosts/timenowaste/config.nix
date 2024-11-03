@@ -71,11 +71,26 @@
   users = {
     mutableUsers = false;
     users.root = {
+      hashedPassword = "$y$j9T$lBFX/Lh4ssVXJwn.L4Bj80$rb5uRZthWPbL9JIisphZyFwScrcOXizYAwRRDe7.eS7";
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIhtWgRmVXptkc7cVosLt5juqaaj4Ce8I5WAvmp8IyAG"
       ];
   };
   };
+
+  # 使用 systemd-networkd 管理网络
+  systemd.network.enable = true;
+  services.resolved.enable = true;
+
+  # 配置网络 IP 和 DNS
+  systemd.network.networks.eth0 = {
+    address = ["104.36.85.231/24"];
+    gateway = ["104.36.85.1"];
+    matchConfig.Name = "eth0";
+  };
+  networking.nameservers = [
+    "1.1.1.1"
+  ];
 
   environment.systemPackages = with pkgs; [
     curl
@@ -89,7 +104,7 @@
    # Services to start
   services.openssh = {
     enable = true;
-    ports = [ 22 ];
+    ports = [ 222 ];
     settings = {
       PasswordAuthentication = true;
       AllowUsers = null; # Allows all users by default. Can be [ "user1" "user2" ]
@@ -112,14 +127,6 @@
       options = "--delete-older-than 7d";
     };
   };
-
-  # Virtualization / Containers
-  # virtualisation.libvirtd.enable = true;
-  # virtualisation.podman = {
-  #   enable = true;
-  #   dockerCompat = true;
-  #   defaultNetwork.settings.dns_enabled = true;
-  # };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
