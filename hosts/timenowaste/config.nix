@@ -80,14 +80,30 @@
 
   # 使用 systemd-networkd 管理网络
   systemd.network.enable = true;
-  services.resolved.enable = true;
+  services.resolved.enable = false;
 
   # 配置网络 IP 和 DNS
   systemd.network.networks.eth0 = {
-    address = ["104.36.85.231/24"];
-    gateway = ["104.36.85.1"];
+    address = [
+      "104.36.85.231/22"
+      "2606:a8c0:3:141::/64"
+    ];
     matchConfig.Name = "eth0";
+    networkConfig = {
+      IPv6AcceptRA = false;
+    };
+    routes = [
+      {
+        Gateway = "172.31.1.1";
+        GatewayOnLink = true;
+      }
+      {
+        Gateway = "fe80::1";
+        GatewayOnLink = true;
+      }
+    ];
   };
+
   networking.nameservers = [
     "1.1.1.1"
   ];
